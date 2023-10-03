@@ -1,24 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import "antd/dist/reset.css";
+import {Form , Button , Input } from 'antd';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div style={{
+      display: 'block', width: 700, padding: 30
+  }}>
+      <h4>ReactJS Ant-Design Form Component</h4>
+      <Form
+          name="basicform"
+          onFinishFailed={() => alert('Failed to submit')}
+          onFinish={() => alert('Form Submitted')}
+          initialValues={{ remember: true }}
+      >
+          <Form.Item
+              label="Enter username"
+              name="Username"
+              rules={[{
+                  required: true,
+                  message: 'Please enter username'
+              }]}
+          >
+              <Input />
+          </Form.Item>
+          <Form.Item>
+              <Button type="success" htmlType="submit">
+                  Submit Username
+              </Button>
+          </Form.Item>
+      </Form>
+  </div>
   );
 }
 
