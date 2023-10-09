@@ -10,8 +10,10 @@ import LoginPage from './pages/authentication/LoginPage';
 import RegistrationPage from './pages/authentication/RegistrationPage';
 import ForgotPasswordPage from './pages/authentication/ForgotPasswordPage';
 import EvehtsPage from './pages/dashboard/EventsPage';
+import FormCreaterPage from './pages/FormCreatorPage';
 
 import AddEventsPage from './pages/dashboard/AddEventPage';
+import FormEditor from './components/Forms/FormEditor';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -24,6 +26,7 @@ root.render(
         <Route path="/forgot-password" element={<ForgotPasswordPage/>}/>
         <Route path ="events" element={<EvehtsPage/>}/>
         <Route path="/add-event" element={<AddEventsPage/>}/>
+        <Route path="/Creator" element={<FormCreaterPage/>}/>
     </Routes>
     </BrowserRouter>
     </ConfigProvider>
