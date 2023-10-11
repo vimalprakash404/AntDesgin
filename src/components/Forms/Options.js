@@ -1,84 +1,52 @@
 import React, { useState } from 'react';
-import { Input, Button, List, Space } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import Optionitem from './Optionitem';
+import { Space , Input } from 'antd';
 
-function Options() {
-  const [options, setOptions] = useState([]);
+const Options = () => {
+  // Sample array of options
+  const initialOptions = ["Option 1", "Option 2", "Option 3"];
+  const [options, setOptions] = useState(initialOptions);
   const [newOption, setNewOption] = useState('');
-  const [editingIndex, setEditingIndex] = useState(null);
 
-  const handleInputChange = (e) => {
-    setNewOption(e.target.value);
+  const handleRemoveOption = (optionToRemove) => {
+    // Create a new array without the option to remove
+    const newOptions = options.filter((option) => option !== optionToRemove);
+    setOptions(newOptions);
   };
 
-  const addOption = () => {
-    if (newOption) {
-      setOptions([...options, newOption]);
-      setNewOption('');
+  const handleAddOption = () => {
+    if (newOption.trim() === '') {
+      return; // Don't add empty options
     }
-  };
 
-  const editOption = (index) => {
-    setEditingIndex(index);
-    setNewOption(options[index]);
-  };
-
-  const updateOption = () => {
-    if (newOption && editingIndex !== null) {
-      const updatedOptions = [...options];
-      updatedOptions[editingIndex] = newOption;
-      setOptions(updatedOptions);
-      setNewOption('');
-      setEditingIndex(null);
-    }
-  };
-
-  const deleteOption = (index) => {
-    const updatedOptions = [...options];
-    updatedOptions.splice(index, 1);
-    setOptions(updatedOptions);
+    // Create a new array with the new option
+    const newOptions = [...options, newOption];
+    setOptions(newOptions);
+    setNewOption('');
   };
 
   return (
-    <div>
-      {/* <h2>Options List</h2> */}
+    <>
       
-      <List
-        dataSource={options}
-        renderItem={(option, index) => (
-          <List.Item
-            actions={[
-              <Space>
-                <EditOutlined onClick={() => editOption(index)} />
-                <DeleteOutlined onClick={() => deleteOption(index)} />
-              </Space>
-            ]}
-            onClick={() => editOption(index)}
-          >
-            {index === editingIndex ? (
-              <Input
-                type="text"
-                value={newOption}
-                onChange={handleInputChange}
-              />
-            ) : (
-              option
-            )}
-          </List.Item>
-        )}
-      />
-      <Input
-        type="text"
-        value={newOption}
-        onChange={handleInputChange}
-        placeholder="New Option"
-        style={{ width: '300px' }}
-      />
-      <Button type="primary" onClick={ addOption }>
-        { 'Add'}
-      </Button>
-    </div>
+      {options.map((option) => (
+        <div key={option}>
+        <Space wrap>
+          <Optionitem data={option} />
+          <button onClick={() => handleRemoveOption(option)}>Remove</button>
+          </Space>
+        </div>
+      ))}
+      <div>
+        <Input
+          type="text"
+          value={newOption}
+          onChange={(e) => setNewOption(e.target.value)}
+          onPressEnter={(e) => {setNewOption(e.target.value); handleAddOption();}}
+        />
+        <button onClick={handleAddOption}>Add</button>
+      </div>
+    </>
   );
-}
+};
 
 export default Options;

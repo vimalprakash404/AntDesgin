@@ -1,5 +1,5 @@
 import Contentdata from "../../components/dashboard/Contentdata";
-import { Col,Row, Statistic,Card,Divider } from "antd";
+import {Statistic,Card,Divider } from "antd";
 import { TeamOutlined } from '@ant-design/icons';
 import { Area,Line} from '@ant-design/charts';
 const {Meta}= Card
@@ -56,44 +56,47 @@ const HomePage = ()=> {
     const content  = ()=> {
         return (
             <>
-            <Row gutter={16}>
-                <Col span={6}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
+            {/* <Row gutter={16}>
+                <Col span={6}> */}
                     <Card>
                         <Statistic title="Registered User" value={1128} prefix={<TeamOutlined color="blue" />} />
                     </Card>
-                </Col>
-                <Col span={6}>
+                {/* </Col> */}
+                {/* <Col span={6}> */}
                     <Card>
                         <Statistic title="Work Shop 1" value={93} suffix="/ 100" />
                     </Card>
-                </Col>
-                <Col span={6}>
+                {/* </Col> */}
+                {/* <Col span={6}> */}
                     <Card>
                         <Statistic title="Work Shop 2" value={62} suffix="/ 100" />
                     </Card>
-                </Col>
-                <Col span={6}>
+                {/* </Col> */}
+                {/* <Col span={6}> */}
                     <Card>
                         <Statistic title="Work Shop 3" value={45} suffix="/ 100" />
                     </Card>
-                </Col>
-            </Row>
+                {/* </Col> */}
+            {/* </Row> */}
+            </div>
             <Divider />
-            <Row gutter={16}>
-                <Col span={12} >
-                    <Card description={"User data"}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
+            {/* <Row gutter={16}> */}
+                {/* <Col span={12} > */}
+                    <Card description={"User data"} style={{ width: "400px"}} >
                         {graph()}
                         <Meta title="User Data" />
                     </Card >
-                </Col>
-                <Col span={12} >
-                    <Card description={"data Base"}>
+                {/* </Col> */}
+                {/* <Col span={12} > */}
+                    <Card description={"data Base"} style={{ width: "400px"}}>
                         {graph1()}
                         <Meta title="Work Shop" />
                     </Card>
-                </Col>
-            </Row>
-            
+                {/* </Col> */}
+            {/* </Row> */}
+            </div>
             </>
         );
     }
